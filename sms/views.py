@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -14,12 +15,13 @@ from twilio.twiml import Response
 def index(request):
 
     if request.method == 'GET':
-        return render(request, "index.html")
+        form = SignupAliasForm()
+        return render(request, "index.html", {'form': form})
 
     form = SignupAliasForm(request.POST)
 
     if not form.is_valid():
-        return HttpResponse("failure")
+        return render(request, "index", {'form': form})
 
     if LittleLogAlias.objects.filter(alias=form.cleaned_data['alias']).exists():
         return HttpResponse("alias already exists, please choose another")
@@ -29,8 +31,15 @@ def index(request):
             alias=form.cleaned_data['alias'],
             email_secret=form.cleaned_data['email_secret'],
         ).save()
+
+        redi
     except Exception:
         return HttpResponse("could not create account")
+
+
+def success(request, alias=None):
+    return render(request, "success", {'alias': alias})
+
 
 
 #

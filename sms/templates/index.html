@@ -1,11 +1,28 @@
 {% extends "base.html" %}
 
 {% block heading %}
-    Welcome to LittleLogSMS
+Post to LittleLogs via SMS
 {% endblock heading %}
 
 {% block body %}
-    <p class="lead">LLSMS lets you post logs via text message while on the go.</p>
-    <p class="lead">This is third-party tool to LittleLogs, and in no way affiliated.</p>
-    <a class="btn btn-md btn-secondary" href="/signup">Create a texting alias here</a>
+    <!--<p class="lead">Post to LittleLogs via SMS</p>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                {% if form.subject.errors %}
+                     <ol>
+                    {% for error in form.subject.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                    {% endfor %}
+                    </ol>
+                { % endif %}
+                <form action="/" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="alias" class="form-control" placeholder="alias.." />
+                    <input type="text" name="email_secret" class="m-t form-control" placeholder="email secret.." />
+                    <button type="submit" class="m-t btn btn-block btn-primary">Get Started!</button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock body %}

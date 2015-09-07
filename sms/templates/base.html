@@ -11,12 +11,15 @@
 
     <title>Cover Template for Bootstrap</title>
 
+
     {% load static from staticfiles %}
     <!-- Bootstrap core CSS -->
     <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{% static 'cover.css' %}" rel="stylesheet">
+
+
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
@@ -30,17 +33,17 @@
 
         <div class="cover-container">
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">LittleLogSMS</h3>
-              <!--
-              <nav class="nav nav-masthead">
-                <a class="nav-link active" href="#">Home</a>
-                <a class="nav-link" href="#">Features</a>
-                <a class="nav-link" href="#">Contact</a>
-              </nav> -->
-            </div>
-          </div>
+          <!--<div class="masthead clearfix">-->
+            <!--<div class="inner">-->
+              <!--<h3 class="masthead-brand">LittleLogSMS</h3>-->
+              <!--&lt;!&ndash;-->
+              <!--<nav class="nav nav-masthead">-->
+                <!--<a class="nav-link active" href="#">Home</a>-->
+                <!--<a class="nav-link" href="#">Features</a>-->
+                <!--<a class="nav-link" href="#">Contact</a>-->
+              <!--</nav> &ndash;&gt;-->
+            <!--</div>-->
+          <!--</div>-->
 
           <div class="inner cover">
             <h1 class="cover-heading">
@@ -55,7 +58,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              <p>Built with love in <a href="http://getbootstrap.com">Bootstrap4</a>, by <a href="https://twitter.com/PhilipHouse2">@PhilipHouse2</a>.</p>
+              <p>A third-party tool unaffiliated with Little Logs, built by <a href="https://twitter.com/PhilipHouse2">@PhilipHouse2</a>.</p>
             </div>
           </div>
 
@@ -71,6 +74,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.2.0/trianglify.min.js"></script>
+    <script type="text/javascript">
+        var pattern = Trianglify({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+
+        target = document.getElementsByTagName("body")[0];
+        target.style['background-image'] = 'url(' + pattern.png() + ')';
+    </script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
   </body>
