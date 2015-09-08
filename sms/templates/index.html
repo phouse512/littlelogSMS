@@ -15,7 +15,7 @@ Post to LittleLogs via SMS
                         <li><strong>{{ error|escape }}</strong></li>
                     {% endfor %}
                     </ol>
-                { % endif %}
+                {% endif %}
                 <form action="/" method="post">
                     {% csrf_token %}
                     <input type="text" name="alias" class="form-control" placeholder="alias.." />
