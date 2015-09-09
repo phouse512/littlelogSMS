@@ -32,7 +32,7 @@ def index(request):
 
     print new_alias
 
-    return redirect("success", alias=new_alias.alias)
+    return redirect("success/", alias=new_alias.alias)
     # except Exception:
     #     return HttpResponse("could not create account")
 
