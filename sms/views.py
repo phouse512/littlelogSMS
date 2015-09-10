@@ -30,11 +30,7 @@ def index(request):
     new_alias = LittleLogAlias(alias=form.cleaned_data['alias'], email_secret=form.cleaned_data['email_secret'])
     new_alias.save()
 
-    print new_alias
-
     return redirect("success/", alias=new_alias.alias)
-    # except Exception:
-    #     return HttpResponse("could not create account")
 
 
 def success(request, alias=None):
