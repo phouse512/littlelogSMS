@@ -1,3 +1,4 @@
 django
 twilio
 psycopg2
+gunicorn
