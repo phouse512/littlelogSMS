@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from secrets import email_credentials
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -26,6 +28,12 @@ SECRET_KEY = 'ij+z6j9l(mlw$@zb3%a8#$e6y8#(c@n07i&l9_n555kcltxr3s'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+EMAIL_HOST = email_credentials['EMAIL_HOST']
+EMAIL_USE_TLS = email_credentials['EMAIL_USE_TLS']
+EMAIL_PORT = email_credentials['EMAIL_PORT']
+EMAIL_HOST_USER = email_credentials['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = email_credentials['EMAIL_HOST_PASSWORD']
 
 
 # Application definition
