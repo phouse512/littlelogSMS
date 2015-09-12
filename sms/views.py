@@ -12,7 +12,7 @@ from sms.models import LittleLogHistory
 from sms.models import LittleLogAlias
 from sms.response import TextResponse
 
-from twilio.twiml import Response
+
 
 # Create your views here.
 
@@ -45,30 +45,40 @@ def success(request, alias=None):
 
 #
 @csrf_exempt
-def handle_twilio(request):
-    resp = Response()
-    # TODO: figure out a better way so this isn't hard coded
-    resp.redirect("http://52.2.237.235/api/_send_log/")
-    return str(resp)
-#
-# def updateLog(request):
-#
-#     body
-
 @require_POST
-@csrf_exempt
-def send_log(request):
+def handle_twilio(request):
 
     recipient_list = ["bob.49195@mailbot.littlelogs.co"]
     from_email = "LittleLog SMS"
     subject = "test"
     message = request.POST['Body']
 
-    response_handler = TextResponse(request.POST['FROM'])
+    response_handler = TextResponse(request.POST['From'])
     try:
         send_mail(subject, message, from_email, recipient_list)
-        response_handler.handle_success()
+        return response_handler.handle_success()
     except SMTPException as exception:
-        response_handler.handle_error()
+        return response_handler.handle_error()
 
-    return HttpResponse("sent successfully!", status=200)
+
+#
+# def updateLog(request):
+#
+#     body
+
+
+# def send_log(request):
+#
+#     recipient_list = ["bob.49195@mailbot.littlelogs.co"]
+#     from_email = "LittleLog SMS"
+#     subject = "test"
+#     message = request.POST['Body']
+#
+#     response_handler = TextResponse(request.POST['FROM'])
+#     try:
+#         send_mail(subject, message, from_email, recipient_list)
+#         response_handler.handle_success()
+#     except SMTPException as exception:
+#         response_handler.handle_error()
+#
+#     return HttpResponse("sent successfully!", status=200)
