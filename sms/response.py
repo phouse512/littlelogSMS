@@ -24,13 +24,18 @@ class TextResponse:
         if not error:
             error = DEFAULT_ERROR_MESSAGE
 
-        return str(Response().message(error))
+        response = Response()
+        response.message(error)
+        logger.info(response)
+
+        return response
 
     def handle_success(self, message=None):
         if not message:
             message = DEFAULT_SUCCESS_MESSAGE
 
-        response = str(Response().message(message))
+        response = Response()
+        response.message(message)
         logger.info(response)
 
         return response
