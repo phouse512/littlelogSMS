@@ -57,10 +57,10 @@ def handle_twilio(request):
     response_handler = TextResponse(request.POST['From'])
     try:
         send_mail(subject, message, from_email, recipient_list)
-        return HttpResponse(response_handler.handle_success())
+        return HttpResponse(response_handler.handle_success(), content_type='text/xml')
     except SMTPException as exception:
         logger.error("Email failed to send")
-        return HttpResponse(response_handler.handle_error())
+        return HttpResponse(response_handler.handle_error(), content_type='text/xml')
 
 
 #
