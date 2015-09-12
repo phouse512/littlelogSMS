@@ -146,6 +146,7 @@ LOGGING = {
             'filename': 'lsms.log',
             'maxBytes': 1024*1024*15,  # 15MB
             'backupCount': 10,
+            'formatter': 'verbose'
         },
         'info': {
             'level': 'INFO',
@@ -153,6 +154,7 @@ LOGGING = {
             'filename': 'lsms.log',
             'maxBytes': 1024*1024*15,  # 15MB
             'backupCount': 10,
+            'formatter': 'verbose'
         }
     },
     'loggers': {
