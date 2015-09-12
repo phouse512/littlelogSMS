@@ -2,6 +2,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from smtplib import SMTPException
@@ -43,6 +44,7 @@ def success(request, alias=None):
 
 
 #
+@csrf_exempt
 def handle_twilio(request):
     resp = Response()
     # TODO: figure out a better way so this isn't hard coded
@@ -54,6 +56,7 @@ def handle_twilio(request):
 #     body
 
 @require_POST
+@csrf_exempt
 def send_log(request):
 
     recipient_list = ["bob.49195@mailbot.littlelogs.co"]
