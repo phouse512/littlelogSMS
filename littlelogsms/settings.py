@@ -146,6 +146,13 @@ LOGGING = {
             'filename': 'lsms.log',
             'maxBytes': 1024*1024*15,  # 15MB
             'backupCount': 10,
+        },
+        'info': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'lsms.log',
+            'maxBytes': 1024*1024*15,  # 15MB
+            'backupCount': 10,
         }
     },
     'loggers': {
@@ -159,13 +166,13 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'django.request': {
-            'handlers': ['file'],
+        'django': {
+            'handlers': ['file', 'info'],
             'level': 'INFO',
             'propagate': True,
         },
         'littlelogsms': {
-            'handlers': ['file'],
+            'handlers': ['file', 'info'],
             'level': 'DEBUG'
         }
     }

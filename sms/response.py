@@ -1,6 +1,8 @@
 """
     Basic message response class to handle communicating with users
 """
+import logging
+logger = logging.getLogger(__name__)
 
 from twilio.twiml import Response
 
@@ -28,5 +30,8 @@ class TextResponse:
         if not message:
             message = DEFAULT_SUCCESS_MESSAGE
 
-        return str(Response().message(message))
+        response = str(Response().message(message))
+        logger.info(response)
+
+        return response
 

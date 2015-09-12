@@ -12,7 +12,8 @@ from sms.models import LittleLogHistory
 from sms.models import LittleLogAlias
 from sms.response import TextResponse
 
-
+import logging
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -58,6 +59,7 @@ def handle_twilio(request):
         send_mail(subject, message, from_email, recipient_list)
         return HttpResponse(response_handler.handle_success())
     except SMTPException as exception:
+        logger.error("Email failed to send")
         return HttpResponse(response_handler.handle_error())
 
 
