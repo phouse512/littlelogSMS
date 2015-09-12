@@ -159,6 +159,11 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
         'littlelogsms': {
             'handlers': ['file'],
             'level': 'DEBUG'
