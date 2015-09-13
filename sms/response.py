@@ -1,5 +1,5 @@
 """
-    Basic message response class to handle communicating with users
+    Basic message self.response class to handle communicating with users
 """
 import logging
 logger = logging.getLogger(__name__)
@@ -9,34 +9,56 @@ from twilio.twiml import Response
 # DEFAULT MESSAGES
 DEFAULT_ERROR_MESSAGE = "Sorry, your log failed to send. Tweet @PhilipHouse2 so he fixes it!"
 DEFAULT_SUCCESS_MESSAGE = "Your log was stored successfully!"
+DEFAULT_HELP_MESSAGE = "Stuck? Enter your alias with a space before you type the"
 
 
 class TextResponse:
 
     """
-        TextResponse is initialized with a string of the user's phone #
+        Textself.Response is initialized with a string of the user's phone #
     """
-    def __init__(self, recipient):
-        self.recipient = recipient
+    def __init__(self, locale=None):
+        self.locale = locale
+        self.response = Response()
 
-
-    def handle_error(self, error=None):
+    def error(self, error=None):
         if not error:
             error = DEFAULT_ERROR_MESSAGE
 
-        response = Response()
-        response.message(error)
-        logger.info(response)
+        self.response.message(error)
+        logger.info(self.response)
 
-        return response
+        return self.response
 
-    def handle_success(self, message=None):
+    def success(self, message=None):
         if not message:
             message = DEFAULT_SUCCESS_MESSAGE
 
-        response = Response()
-        response.message(message)
-        logger.info(response)
+        self.response.message(message)
+        logger.info(self.response)
 
-        return response
+        return self.response
 
+    def help(self, message=None):
+        if not message:
+            message = DEFAULT_HELP_MESSAGE
+
+        self.response.message(message)
+        logger.info("Help message sent: %s" % message)
+        return self.response
+
+    def improper_format(self, message=None):
+        if not message:
+            message = DEFAULT_HELP_MESSAGE
+
+        self.response.message(message)
+        logger.info("Improper format message sent: %s" % message)
+        return self.response
+
+    def alias_not_found(self, message=None):
+        if not message:
+            message = "NOT FOUND YO"
+
+        self.response.message(message)
+        logger.info("")
+        return self.response

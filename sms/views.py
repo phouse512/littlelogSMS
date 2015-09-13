@@ -10,6 +10,7 @@ from smtplib import SMTPException
 from sms.forms import SignupAliasForm
 from sms.models import LittleLogHistory
 from sms.models import LittleLogAlias
+from sms.processor import MessageProcessor
 from sms.response import TextResponse
 
 import logging
@@ -36,51 +37,26 @@ def index(request):
     new_alias = LittleLogAlias(alias=form.cleaned_data['alias'], email_secret=form.cleaned_data['email_secret'])
     new_alias.save()
 
-    return redirect("success/", alias=new_alias.alias)
+    return redirect("success/%s" % new_alias.alias)
 
 
-def success(request, alias=None):
+def success(request, alias):
     return render(request, "success.html", {'alias': alias})
 
 
-
-#
 @csrf_exempt
 @require_POST
 def handle_twilio(request):
 
-    recipient_list = ["bob.49195@mailbot.littlelogs.co"]
-    from_email = "LittleLog SMS"
-    subject = "test"
     message = request.POST['Body']
-
-    response_handler = TextResponse(request.POST['From'])
-    try:
-        send_mail(subject, message, from_email, recipient_list)
-        return HttpResponse(response_handler.handle_success(), content_type='text/xml')
-    except SMTPException as exception:
-        logger.error("Email failed to send")
-        return HttpResponse(response_handler.handle_error(), content_type='text/xml')
+    response = MessageProcessor(message).handle()
+    return HttpResponse(response, content_type="text/xml")
 
 
-#
-# def updateLog(request):
-#
-#     body
+@csrf_exempt
+@require_POST
+def test_processor(request):
 
-
-# def send_log(request):
-#
-#     recipient_list = ["bob.49195@mailbot.littlelogs.co"]
-#     from_email = "LittleLog SMS"
-#     subject = "test"
-#     message = request.POST['Body']
-#
-#     response_handler = TextResponse(request.POST['FROM'])
-#     try:
-#         send_mail(subject, message, from_email, recipient_list)
-#         response_handler.handle_success()
-#     except SMTPException as exception:
-#         response_handler.handle_error()
-#
-#     return HttpResponse("sent successfully!", status=200)
+    message = request.POST['Body']
+    response = MessageProcessor(message).handle()
+    return HttpResponse(response, content_type="text/xml")
