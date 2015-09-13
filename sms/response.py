@@ -72,5 +72,5 @@ class TextResponse:
             message = DEFAULT_FEEDBACK_SUCCESS
 
         self.response.message(message)
-        logger.info("Feedback recieved")
+        logger.info("Feedback received")
         return self.response
