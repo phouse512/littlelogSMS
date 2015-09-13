@@ -8,9 +8,10 @@ from twilio.twiml import Response
 
 # DEFAULT MESSAGES
 DEFAULT_ERROR_MESSAGE = "Sorry, your log failed to send. Tweet @PhilipHouse2 so he fixes it!"
-DEFAULT_SUCCESS_MESSAGE = "Your log was stored successfully!"
+DEFAULT_SUCCESS_MESSAGE = "Your log was stored successfully! Have feedback? Use the 'feedback' " \
+    "alias to send me your feedback!"
 DEFAULT_HELP_MESSAGE = "Stuck? Enter your alias with a space before you type your log! Ex:" +  \
-    "'phil #working on little logs'."
+    "'phil #working on little logs'. Type 'feedback your feedback here' to send me feedback!"
 DEFAULT_NOT_FOUND_MESSAGE = "Your alias wasn't found. Go to the site and make sure you registered correctly?"
 DEFAULT_IMPROPER_MESSAGE = "Sorry, your message wasn't properly formatted. Type 'helpme' for help"
 DEFAULT_FEEDBACK_SUCCESS = "Thank you for your feedback! You can also tweet @PhilipHouse2 with feedback!"
