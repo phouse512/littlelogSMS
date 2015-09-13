@@ -60,7 +60,7 @@ class TextResponse:
 
     def alias_not_found(self, message=None):
         if not message:
-            message = "NOT FOUND YO"
+            message = DEFAULT_NOT_FOUND_MESSAGE
 
         self.response.message(message)
         logger.info("")
