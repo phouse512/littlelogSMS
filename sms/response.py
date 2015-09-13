@@ -9,7 +9,9 @@ from twilio.twiml import Response
 # DEFAULT MESSAGES
 DEFAULT_ERROR_MESSAGE = "Sorry, your log failed to send. Tweet @PhilipHouse2 so he fixes it!"
 DEFAULT_SUCCESS_MESSAGE = "Your log was stored successfully!"
-DEFAULT_HELP_MESSAGE = "Stuck? Enter your alias with a space before you type the"
+DEFAULT_HELP_MESSAGE = "Stuck? Enter your alias with a space before you type your log! Ex:" +  \
+    "'phil #working on little logs'"
+DEFAULT_NOT_FOUND_MESSAGE = "Your alias wasn't found. Go to the site and make sure you registered correctly?"
 
 
 class TextResponse:
