@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
-SAFE_ALIASES = ["feedback"]
+SAFE_ALIASES = ["feedback", "help"]
 
 def index(request):
 
@@ -31,15 +31,16 @@ def index(request):
     if not form.is_valid():
         return render(request, "index.html", {'form': form})
 
+    alias_text = form.cleaned_data['alias'].lower()
+
     ### catch safewords
-    if form.cleaned_data['alias'] in SAFE_ALIASES:
+    if alias_text in SAFE_ALIASES:
         return HttpResponse("that alias is reserved for special commands")
 
-    if LittleLogAlias.objects.filter(alias=form.cleaned_data['alias']).exists():
+    if LittleLogAlias.objects.filter(alias=alias_text).exists():
         return HttpResponse("alias already exists, please choose another")
 
-
-    new_alias = LittleLogAlias(alias=form.cleaned_data['alias'], email_secret=form.cleaned_data['email_secret'])
+    new_alias = LittleLogAlias(alias=alias_text, email_secret=form.cleaned_data['email_secret'])
     new_alias.save()
 
     return redirect("success/%s" % new_alias.alias)

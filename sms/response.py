@@ -13,7 +13,7 @@ DEFAULT_HELP_MESSAGE = "Stuck? Enter your alias with a space before you type you
     "'phil #working on little logs'."
 DEFAULT_NOT_FOUND_MESSAGE = "Your alias wasn't found. Go to the site and make sure you registered correctly?"
 DEFAULT_IMPROPER_MESSAGE = "Sorry, your message wasn't properly formatted. Type 'helpme' for help"
-
+DEFAULT_FEEDBACK_SUCCESS = "Thank you for your feedback! You can also tweet @PhilipHouse2 with feedback!"
 
 class TextResponse:
 
@@ -63,5 +63,13 @@ class TextResponse:
             message = DEFAULT_NOT_FOUND_MESSAGE
 
         self.response.message(message)
-        logger.info("")
+        logger.info("Alias not found message sent")
+        return self.response
+
+    def feedback_success(self, message=None):
+        if not message:
+            message = DEFAULT_FEEDBACK_SUCCESS
+
+        self.response.message(message)
+        logger.info("Feedback recieved")
         return self.response
