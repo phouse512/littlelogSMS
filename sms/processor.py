@@ -32,7 +32,7 @@ class MessageProcessor:
         message_info = self.message.split(" ", 1)
 
         # if asking for help and alias is not 'help'
-        if message_info[0] == 'help' and len(message_info) < 2:
+        if message_info[0] == 'helpme' and len(message_info) < 2:
             return self.response_handler.help()
 
         # if empty message or improper format beyond this point
