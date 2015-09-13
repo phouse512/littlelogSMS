@@ -48,7 +48,7 @@ class TextResponse:
             message = DEFAULT_HELP_MESSAGE
 
         self.response.message(message)
-        logger.info("Help message sent: %s" % message)
+        logger.info("Help message sent")
         return self.response
 
     def improper_format(self, message=None):
@@ -56,7 +56,7 @@ class TextResponse:
             message = DEFAULT_IMPROPER_MESSAGE
 
         self.response.message(message)
-        logger.info("Improper format message sent: %s" % message)
+        logger.info("Improper format message sent")
         return self.response
 
     def alias_not_found(self, message=None):

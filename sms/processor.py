@@ -70,7 +70,6 @@ class MessageProcessor:
             logger.error("Email failed to send")
             return self.response_handler.error()
 
-
     """
         Private method to send a feedback email
     """
