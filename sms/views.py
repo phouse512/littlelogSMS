@@ -35,6 +35,7 @@ def index(request):
 
     ### catch safewords
     if alias_text in SAFE_ALIASES:
+        logger.info("Reserved alias attempted signup")
         return HttpResponse("that alias is reserved for special commands")
 
     if LittleLogAlias.objects.filter(alias=alias_text).exists():
