@@ -47,6 +47,7 @@ def index(request):
     return redirect("success/%s" % new_alias.alias)
 
 
+# adding some comments
 def success(request, alias):
     return render(request, "success.html", {'alias': alias})
 
